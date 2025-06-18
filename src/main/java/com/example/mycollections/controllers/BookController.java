@@ -8,8 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
-public class BookController {
 
+public class BookController {
     private final List<Book> books = new ArrayList<>() {{
         add(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 180));
         add(new Book("To Kill a Mockingbird", "Harper Lee", 1960, 281));
@@ -25,7 +25,7 @@ public class BookController {
     public String getBooksHtml() {
         String bookList = "<ul>";
         for (Book book : books) {
-            bookList += "<li>" + book + "</li>";
+            bookList += "<li>" + book.getName() + book.getAuthor() + book.getYear() + book.getPages() + "</li>";
         }
         bookList += "</ul>";
 
@@ -35,10 +35,11 @@ public class BookController {
                         <h1>Books</h1>
                         <ul>
                 """ +
-                bookList + 
+                bookList +
                 """
                         </ul>
                     </body>
+                <html>
                 """;
     }
 
