@@ -12,22 +12,22 @@ import java.util.List;
 @RequestMapping("/albums")
 
 public class AlbumController {
-    private List<Album> albums = new ArrayList<>() {{
+    private final List<Album> album = new ArrayList<>() {{
         add(new Album("Ordinary", "Alex Warren", 2025, 60));
         add(new Album("Just in case", "Morgan Wallen", 2025, 90));
-        add(new Album("Luther", "Kendrick Lamar & SZA", 205, 120));
+        add(new Album("Luther", "Kendrick Lamar & SZA", 2025, 120));
     }};
 
     @GetMapping("/json")
     public List<Album> getAlbumsJson() {
-        return albums;
+        return album;
     }
 
     @GetMapping("/html")
     public String getAlbumHtml() {
         String albumList = "<ul>";
-        for (Album album : albums ){
-            albumList += "<li>" + album + "</li>";
+        for (Album album : album ){
+            albumList += "<li>" + album.getName() + album.getArtist() + album.getYear() + album.getTrack() + "</li>";
         }
         albumList += "</ul>";
 
@@ -39,8 +39,8 @@ public class AlbumController {
                 """ +
                 albumList+
                 """
-                                </ul>
-                            </body>
+                         </ul>
+                     </body>
                 </html>
                 """;
     }

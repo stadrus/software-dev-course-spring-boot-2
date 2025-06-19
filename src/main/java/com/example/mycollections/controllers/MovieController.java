@@ -10,24 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 public class MovieController {
-    private final List<Movie> movie = new ArrayList<>() {{
-        add(new Movie("Ordinary", "Alex Warren", 2025, 60));
-        add(new Movie("Just in case", "Morgan Wallen", 2025, 90));
-        add(new Movie("Luther", "Kendrick Lamar & SZA", 205, 120));
+    private final List<Movie> movies = new ArrayList<>() {{
+        add(new Movie("The Matrix", "Wachowskis", 1999, 150));
+        add(new Movie("The Lion King", "Rogers Allers", 1994, 90));
+        add(new Movie("Titanic", "James Cameron", 1997, 120));
     }};
 
     @GetMapping("/json")
     public List<Movie> getMovieJson() {
-        return movie;
+        return movies;
     }
 
     @GetMapping("/html")
     public String getMovieHtml() {
         String movieList = "<ul>";
-        for (Movie movie : movie) {
-            movieList += "<li>" + movie + "</li>";
+        for (Movie movie : movies) {
+            movieList += "<li>" + movie.getName() + movie.getDirector()+ movie.getYear()+ movie.getRuntime() +"</li>";
         }
         movieList += "</ul>";
 
@@ -39,9 +39,10 @@ public class MovieController {
                 """ +
                 movieList +
                 """
-                                </ul>
-                            </body>
-                        """;
+                         </ul>
+                    </body>
+                </html>
+                """;
 
     }
 }
